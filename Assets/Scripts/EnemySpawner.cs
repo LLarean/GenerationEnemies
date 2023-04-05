@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private Enemy _enemy;
     [SerializeField] private List<Transform> _spawnPositions;
     [SerializeField] private float _spawnDelay;
     [SerializeField] private int _maximumNumberEnemies;
 
-    private List<GameObject> _enemies = new List<GameObject>();
+    private List<Enemy> _enemies = new List<Enemy>();
     private float _runningTime;
     private int _spawnCount;
     private int _defaultSpawnCount = 0;
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
             _spawnCount = _defaultSpawnCount;
         }
 
-        GameObject enemy = Instantiate(_enemy, spawnPosition, Quaternion.identity);
+        Enemy enemy = Instantiate(_enemy, spawnPosition, Quaternion.identity);
         _enemies.Add(enemy);
     }
 
