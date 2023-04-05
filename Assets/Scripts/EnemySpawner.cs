@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Enemy _template;
     [SerializeField] private List<Transform> _spawnPositions;
     [SerializeField] private float _spawnDelay;
     [SerializeField] private int _maximumNumberEnemies;
@@ -19,12 +19,12 @@ public class EnemySpawner : MonoBehaviour
         
         if (_runningTime >= _spawnDelay)
         {
-            SpawnEnemy();
+            Spawn();
             _runningTime = 0;
         }
     }
 
-    private void SpawnEnemy()
+    private void Spawn()
     {
         RemoveUnnecessaryEnemies();
 
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
             _spawnCount = _defaultSpawnCount;
         }
 
-        Enemy enemy = Instantiate(_enemy, spawnPosition, Quaternion.identity);
+        Enemy enemy = Instantiate(_template, spawnPosition, Quaternion.identity);
         _enemies.Add(enemy);
     }
 
