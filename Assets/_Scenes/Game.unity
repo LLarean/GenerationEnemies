@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 385157880}
   - component: {fileID: 385157879}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,13 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d86d6fb708c7a745abc5389da87b42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _template: {fileID: 2845708208770868344, guid: 20cf2380247f4754585af28ee8c02873, type: 3}
+  _enemy: {fileID: 2845708208770868344, guid: 20cf2380247f4754585af28ee8c02873, type: 3}
   _spawnPositions:
   - {fileID: 806744586}
   - {fileID: 913113901}
   - {fileID: 1044840017}
   - {fileID: 1697739856}
-  _spawnDelay: 2
+  _delay: 2
   _maximumNumberEnemies: 3
 --- !u!4 &385157880
 Transform:
