@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Enemy _prefab;
     [SerializeField] private List<Transform> _spawnPositions;
     [SerializeField] private float _delay = 2f;
     [SerializeField] private int _maximumNumberEnemies = 3;
@@ -12,19 +12,22 @@ public class Spawner : MonoBehaviour
     private int _spawnIndex = 0;
     private int _defaultSpawnIndex = 0;
     private List<Enemy> _enemies = new List<Enemy>();
-
+    private bool _canSpawn = true;
+    
     private void Start() => StartCoroutine(Spawn());
 
     private IEnumerator Spawn()
     {
-        RemoveUnnecessary();
+        while (_canSpawn)
+        {
+            RemoveUnnecessary();
         
-        var spawnPosition = GetSpawnPosition();
-        var enemy = Instantiate(_enemy, spawnPosition, Quaternion.identity);
-        _enemies.Add(enemy);
+            var spawnPosition = GetSpawnPosition();
+            var enemy = Instantiate(_prefab, spawnPosition, Quaternion.identity);
+            _enemies.Add(enemy);
         
-        yield return new WaitForSeconds(_delay);
-        StartCoroutine(Spawn());
+            yield return new WaitForSeconds(_delay);
+        }
     }
 
     private void RemoveUnnecessary()
